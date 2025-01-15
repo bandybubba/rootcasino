@@ -1,0 +1,200 @@
+/* General Styles */
+body {
+  font-family: 'Roboto', sans-serif;
+  background: linear-gradient(to bottom, #1a1a1a, #2e2a26); /* Darker desert tones */
+  color: #ffd45e; /* Sunset Yellow */
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  min-height: 100vh;
+}
+
+header {
+  background: linear-gradient(to right, #4b2c1a, #322217); /* Deep Brown */
+  padding: 1.5rem;
+  color: #ffd45e;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  text-transform: uppercase;
+}
+
+header h1 {
+  font-size: 3rem;
+  margin: 0;
+}
+
+header .info-box {
+  font-size: 1rem;
+  background: #3c2f2f;
+  color: #ff9f45; /* Warm Orange */
+  padding: 0.8rem 1.2rem;
+  border-radius: 15px;
+  margin-top: 1rem;
+  display: inline-block;
+}
+
+header .btn {
+  margin-top: 1rem;
+  padding: 0.8rem 1.5rem;
+  background: linear-gradient(to right, #ff9f45, #d16e39);
+  color: #322217;
+  font-weight: bold;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.5);
+}
+
+header .btn:hover {
+  background: linear-gradient(to right, #d16e39, #b24a1f);
+}
+
+/* Main Layout */
+main {
+  display: grid;
+  grid-template-columns: 2fr 1fr; /* Two columns: race track and user info */
+  gap: 2rem;
+  padding: 2rem;
+  max-width: 1200px;
+  width: 100%;
+  align-items: stretch; /* Ensure proper alignment */
+}
+
+/* Race Visualization */
+#race-visualization {
+  grid-column: 1 / 2;
+  padding: 1.5rem;
+  background: #1a1a1a; /* Dark background */
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+  color: #ffd45e;
+  height: 400px; /* Fixed height for race track container */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#track {
+  display: flex; /* Stack lanes vertically */
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  background: linear-gradient(to bottom, #3b2c25, #2e251f);
+  padding: 1rem;
+  border-radius: 15px;
+  border: 2px solid #ff9f45;
+  height: 75%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.track-lane {
+  display: flex;
+  align-items: center; /* Vertically center rabbits */
+  justify-content: flex-start; /* Rabbits start on the left */
+  flex: 1;
+  width: 100%;
+  border-bottom: 1px solid #ff9f45; /* Lane divider */
+  position: relative;
+  padding: 0 10px; /* Add padding for rabbit spacing */
+}
+
+.track-lane:last-child {
+  border-bottom: none; /* Remove border for the last lane */
+}
+
+/* Rabbit Rectangles */
+.rabbit {
+  width: 40px; /* Adjust size for proper lane fit */
+  height: 40px;
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+  line-height: 40px;
+  position: absolute;
+  left: 10px; /* Add spacing from the left edge */
+  top: 50%; /* Center in lane */
+  transform: translateY(-50%);
+  transition: left 2s linear;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Define colors for each rabbit */
+/* Define colors for each rabbit using CSS variables */
+#rabbit-1 { --rabbit-color: #d16e39; } /* Deep orange */
+#rabbit-2 { --rabbit-color: #ff9f45; } /* Warm orange */
+#rabbit-3 { --rabbit-color: #ffd27f; } /* Lighter orange */
+#rabbit-4 { --rabbit-color: #b24a1f; } /* Darker orange */
+#rabbit-5 { --rabbit-color: #e68533; } /* Orange-brown */
+#rabbit-6 { --rabbit-color: #ffb350; } /* Golden yellow */
+#rabbit-7 { --rabbit-color: #d97520; } /* Brownish orange */
+#rabbit-8 { --rabbit-color: #ffc866; } /* Pale yellow */
+#rabbit-9 { --rabbit-color: #a65219; } /* Dark brown */
+#rabbit-10 { --rabbit-color: #ffd980; } /* Light yellow */
+
+.rabbit.selected {
+  border: 3px solid yellow;
+  box-shadow: 0 0 10px yellow;
+}
+
+#start-simulation {
+  margin: 0 auto;
+  padding: 0.8rem 1.5rem;
+  background: linear-gradient(to right, #ff9f45, #d16e39);
+  color: #322217;
+  font-weight: bold;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.5);
+}
+
+#start-simulation:hover {
+  background: linear-gradient(to right, #d16e39, #b24a1f);
+}
+
+/* User Area */
+#user-area {
+  grid-column: 2 / 3;
+  padding: 1.5rem;
+  background: #1a1a1a; /* Darker background */
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+  color: #ffd45e;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly; /* Ensure even spacing */
+  height: 400px; /* Match the height of the race track */
+}
+
+/* Info Box */
+.info-box {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background: #3b2c25; /* Match desert tones */
+  border: 1px solid #7d5a4b;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  text-align: center;
+}
+
+.info-box:last-child {
+  margin-bottom: 0;
+}
+
+.info-box h3 {
+  margin: 0;
+  font-size: 1.4rem;
+  color: #ff9f45;
+}
