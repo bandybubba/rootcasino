@@ -1,1 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blackjack Simulator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Blackjack Simulator</h1>
+    </header>
+
+    <main>
+        <!-- Dealer Section -->
+        <section id="dealer-section">
+            <h2>Dealer</h2>
+            <div id="dealer-hand" class="hand"></div>
+        </section>
+
+        <!-- Player Section -->
+        <section id="player-section">
+            <h2>Player</h2>
+            <div id="player-hands-container">
+                <div id="player-hand-1" class="hand"></div>
+            </div>
+            <div id="actions-area">
+                <button onclick="playerHit()">Hit</button>
+                <button onclick="playerStand()">Stand</button>
+                <button onclick="playerDoubleDown()">Double Down</button>
+                <button onclick="playerSplit()">Split</button>
+            </div>
+        </section>
+
+        <!-- Betting Section -->
+        <section id="betting-section">
+            <h3>Place Your Bet</h3>
+            <div class="chips">
+                <button onclick="addChip(5)">💵 $5</button>
+                <button onclick="addChip(10)">💵 $10</button>
+                <button onclick="addChip(25)">💵 $25</button>
+                <button onclick="addChip(50)">💵 $50</button>
+                <button onclick="addChip(100)">💵 $100</button>
+            </div>
+            <div id="balance-area">
+                <span id="balance">Balance: $100</span>
+                <span id="bet">Current Bet: $0</span>
+            </div>
+            <button id="confirm-wager" onclick="confirmWager()">Confirm Wager</button>
+            <button id="clear-bet" onclick="clearBet()">Clear Bet</button>
+        </section>
+        
+    </main>
+
+    <footer>
+        <p id="status">Place your bet to start!</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
 
