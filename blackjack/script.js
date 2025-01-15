@@ -93,29 +93,31 @@ function renderHand(hand) {
         .join("");
 }
 
-function updateHands() {
-    const playerHandDivs = document.querySelectorAll("#player-hands-container .hand");
+function updateHands(revealDealer = false) {
+    const dealerHandDiv = document.getElementById("dealer-hand");
 
+    // Dealer hand logic: reveal only the first card unless explicitly told to reveal the full hand
+    dealerHandDiv.innerHTML = renderHand(
+        dealerHand.map((card, index) =>
+            index === 0 || revealDealer ? card : { rank: "Hidden", suit: "Card" }
+        )
+    );
+
+    // Player hand logic
+    const playerHandDivs = document.querySelectorAll("#player-hands-container .hand");
     playerHandDivs.forEach((div, index) => {
         if (playerHands[index]) {
             div.style.display = "flex";
             div.innerHTML = renderHand(playerHands[index]);
 
             // Highlight the active hand
-            if (index === currentHandIndex) {
-                div.style.border = "2px solid #c69749"; // Gold border for active hand
-            } else {
-                div.style.border = "none"; // Remove border for inactive hands
-            }
+            div.style.border = index === currentHandIndex ? "2px solid #c69749" : "none";
         } else {
             div.style.display = "none";
         }
     });
-
-    // Update the dealer's hand
-    const dealerHandDiv = document.getElementById("dealer-hand");
-    dealerHandDiv.innerHTML = renderHand(dealerHand);
 }
+
 
 
 
@@ -323,8 +325,10 @@ function playerDoubleDown() {
 function playerSplit() {
     if (!gameActive || playerHands.length > 1) {
         updateStatus("Cannot split right now!");
+        splitAllowed = false; // Disable further splits
         return;
     }
+    
 
     const hand = playerHands[0];
     if (hand[0].rank !== hand[1].rank) {
@@ -346,7 +350,8 @@ function playerSplit() {
         [hand[1], deck.pop()]
     ];
 
-    currentHandIndex = 0; // Reset to play the first hand
+    currentHandIndex = 0; // Set active hand to the first hand
+    updateActiveHandUI(); // Highlight the active hand
     updateHands();
     updateStatus("Hand split! Play your first hand.");
     updateUI();
